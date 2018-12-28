@@ -21,7 +21,7 @@ pipeline {
       stage ('Compile-Package') {
             steps {
                 git "https://github.com/ValaxyTech/SimpleCustomerApp.git"
-              sh 'mvn clean package'
+              sh 'mvn package'
             }
           post {
                 success {
