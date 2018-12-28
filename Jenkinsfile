@@ -33,6 +33,8 @@ pipeline {
   
      
      stage ('Sonar-Analysis') {
+        environment {
+        scannerHome = tool 'sonar'
      steps {
  //defining sonar scanner home by giving scaner name or could be generated from pipeline syntax
    //def scannerhome = tool 'sonar'
@@ -43,7 +45,7 @@ pipeline {
     }
 }
 }
-     
+     }  
        
    stage('Deploy to Tomcat'){
   steps {
