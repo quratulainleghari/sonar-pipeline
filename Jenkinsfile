@@ -24,12 +24,12 @@ pipeline {
                sh 'mvn -f /var/lib/jenkins/workspace/sonar-pipeline/my-app-master package'
              // sh 'mvn package'
             }
-          post {
-                success {
-                    archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
-                    junit '**/target/surefire-reports/*.xml' 
-                }
-            }
+          //post {
+                //success {
+                   // archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
+                   // junit '**/target/surefire-reports/*.xml' 
+               // }
+           // }
       }
   
      
