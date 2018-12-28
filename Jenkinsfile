@@ -39,9 +39,9 @@ pipeline {
         def scannerhome = tool 'sonar'
         }
      steps {
-   withSonarQubeEnv ('sonar') {
+   withSonarQubeEnv ('sonar-runner') {
 
- sh "${sonar}/bin/sonar-runner -Dsonar.projectKey=my-app -Dsonar.projectName=my-app -Dsonar.projectVersion=1.0-Dsonar.sources=/var/lib/jenkins/workspace/$JOB_NAME/my-app-master/src"
+ sh "${sonar-runner}/bin/sonar-runner -Dsonar.projectKey=my-app -Dsonar.projectName=my-app -Dsonar.projectVersion=1.0-Dsonar.sources=/var/lib/jenkins/workspace/$JOB_NAME/my-app-master/src"
     }
 
 }
