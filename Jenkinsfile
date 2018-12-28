@@ -39,12 +39,12 @@ pipeline {
         }
      steps {
    withSonarQubeEnv ('sonar') {
-      # Required metadata
+      //Required metadata
 sonar.projectKey=my-app
 sonar.projectName=my-app
 sonar.projectVersion=2.4
 
- # Paths to source directories.
+ //Paths to source directories.
 sonar.sources = /var/lib/jenkins/workspace/$JOB_NAME/my-app-master/src
 
  sh "${sonar}/bin/sonar-runner"
