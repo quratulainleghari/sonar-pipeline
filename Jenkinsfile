@@ -34,7 +34,7 @@ pipeline {
      
      stage ('Sonar-Analysis') {
         environment {
-        scannerHome = tool 'sonar'
+        def scannerHome = tool 'sonar'
      steps {
  //defining sonar scanner home by giving scaner name or could be generated from pipeline syntax
    //def scannerhome = tool 'sonar'
