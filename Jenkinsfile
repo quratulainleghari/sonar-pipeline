@@ -21,7 +21,8 @@ pipeline {
       stage ('Compile-Package') {
             steps {
                 git "https://github.com/ValaxyTech/SimpleCustomerApp.git"
-              sh 'mvn package'
+               sh 'mvn -f /var/lib/jenkins/workspace/sonar-pipeline/SimpleCustomerApp package'
+             // sh 'mvn package'
             }
           post {
                 success {
