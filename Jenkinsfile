@@ -36,8 +36,6 @@ pipeline {
         environment {
         def scannerhome = tool 'sonar'
      steps {
- //defining sonar scanner home by giving scaner name or could be generated from pipeline syntax
-   //def scannerhome = tool 'sonar'
     //using sonarqube environment by generating from pipeline syntax 
    withSonarQubeEnv ('sonar') {
     // using sonarqube code analysis via shell command
