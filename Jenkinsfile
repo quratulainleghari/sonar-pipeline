@@ -35,13 +35,12 @@ pipeline {
      stage ('Sonar-Analysis') {
         environment {
         def scannerhome = tool 'sonar'
+        }
      steps {
-    //using sonarqube environment by generating from pipeline syntax 
    withSonarQubeEnv ('sonar') {
-    // using sonarqube code analysis via shell command
  sh "${sonar}/bin/sonar-runner"
     }
-}
+
 }
      }  
        
