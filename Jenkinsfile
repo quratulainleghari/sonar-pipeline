@@ -36,12 +36,12 @@ pipeline {
      stage ('Sonar-Analysis') {
         environment {
            
-        def scannerhome = tool 'sonar-runner'
+        def scannerhome = tool 'sonar'
         }
      steps {
    withSonarQubeEnv ('sonar') {
 
- sh "${sonar-runner}/bin/sonar-runner -Dsonar.projectKey=my-app -Dsonar.projectName=my-app -Dsonar.projectVersion=1.0-Dsonar.sources=/var/lib/jenkins/workspace/$JOB_NAME/my-app-master/src"
+ sh "${sonar}/bin/sonar -Dsonar.projectKey=my-app -Dsonar.projectName=my-app -Dsonar.projectVersion=1.0-Dsonar.sources=/var/lib/jenkins/workspace/$JOB_NAME/my-app-master/src"
     }
 
 }
