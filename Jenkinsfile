@@ -41,7 +41,7 @@ pipeline {
      steps {
    withSonarQubeEnv ('sonar') {
 
- sh "${sonar}/bin/sonar -Dsonar.projectKey=my-app -Dsonar.projectName=my-app -Dsonar.projectVersion=1.0-Dsonar.sources=/var/lib/jenkins/workspace/$JOB_NAME/my-app-master/src"
+ sh "${sonar}/opt/sonar -Dsonar.projectKey=my-app -Dsonar.projectName=my-app -Dsonar.projectVersion=1.0-Dsonar.sources=/var/lib/jenkins/workspace/$JOB_NAME/my-app-master/src"
     }
 
 }
