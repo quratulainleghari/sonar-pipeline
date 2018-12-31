@@ -41,7 +41,7 @@ pipeline {
      steps {
   withSonarQubeEnv ('sonar') {
 
-sh "${sonar}/opt/sonar "
+sh "${sonar}/opt/sonar' +
      '-Dsonar.projectKey=my-app-master' +
         '-Dsonar.projectName=my-app-master' +
         '-Dsonar.projectVersion=1.0' +
@@ -49,7 +49,7 @@ sh "${sonar}/opt/sonar "
         '-Dsonar.web.host=sonar' +
         '-Dsonar.web.port=9000' +
         '-Dsonar.sources=/var/lib/jenkins/workspace/sonar-pipeline/my-app-master/src' +
-        '-Dsonar.url=http://34.237.220.20:9000/sonar'
+        '-Dsonar.url=http://34.237.220.20:9000/sonar"
    }
 
 }
