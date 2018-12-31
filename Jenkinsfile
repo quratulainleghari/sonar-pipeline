@@ -34,26 +34,17 @@ pipeline {
   
      
     stage ('Sonar-Analysis') {
-       environment {
-           
-       def scannerhome = tool 'sonar'
-      }
-     steps {
-  withSonarQubeEnv ('sonar') {
-
-sh ""${sonar}/opt/sonar" "-Dsonar.projectKey=my-app-master' +
-        '-Dsonar.projectName=my-app-master' +
-        '-Dsonar.projectVersion=1.0' +
-        '-Dsonar.java.binaries=/etc/sonarqube' +
-        '-Dsonar.web.host=sonar' +
-        '-Dsonar.web.port=9000' +
-        '-Dsonar.sources=/var/lib/jenkins/workspace/sonar-pipeline/my-app-master/src' +
-        '-Dsonar.url=http://34.237.220.20:9000/sonar""
+        
+environment {
+ def scannerhome = tool 'sonar'
+    }
+ steps {
+   withSonarQubeEnv ('sonar') 
+{
+sh "${sonar}/opt/sonar -Dsonar.projectKey=my-app-master -Dsonar.projectName=my-app-master -Dsonar.projectVersion=1.0 -Dsonar.java.binaries=/etc/sonarqube  -Dsonar.web.host=sonar -Dsonar.web.port=9000 -Dsonar.sources=/var/lib/jenkins/workspace/sonar-pipeline/my-app-master/src -Dsonar.url=http://34.237.220.20:9000/sonar"
    }
-
 }
-     }  
-       
+    } 
         
    stage('Deploy to Tomcat'){
   steps {
