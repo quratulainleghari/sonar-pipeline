@@ -33,37 +33,29 @@ pipeline {
       }
   
      
-   //  stage ('Sonar-Analysis') {
-       // environment {
+    stage ('Sonar-Analysis') {
+       environment {
            
-       // def scannerhome = tool 'sonar'
-      //  }
-    // steps {
-  // withSonarQubeEnv ('sonar') {
+       def scannerhome = tool 'sonar'
+      }
+     steps {
+  withSonarQubeEnv ('sonar') {
 
-// sh "${sonar}/opt/sonar -Dsonar.projectKey=my-app-master -Dsonar.projectName=my-app-master -Dsonar.projectVersion=1.0 -Dsonar.java.binaries=/etc/sonarqube  -Dsonar.web.host=sonar -Dsonar.web.port=9000 -Dsonar.sources=/var/lib/jenkins/workspace/sonar-pipeline/my-app-master/src -Dsonar.url=http://34.237.220.20:9000/sonar"
-   // }
+sh "${sonar}/opt/sonar "
+     '-Dsonar.projectKey=my-app-master' +
+        '-Dsonar.projectName=my-app-master' +
+        '-Dsonar.projectVersion=1.0' +
+        '-Dsonar.java.binaries=/etc/sonarqube' +
+        '-Dsonar.web.host=sonar' +
+        '-Dsonar.web.port=9000' +
+        '-Dsonar.sources=/var/lib/jenkins/workspace/sonar-pipeline/my-app-master/src' +
+        '-Dsonar.url=http://34.237.220.20:9000/sonar'
+   }
 
-//}
-     //}  
+}
+     }  
        
-        stage('SonarQube analysis') { 
-           steps {
-        withSonarQubeEnv('Sonar') { 
-          sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:2.4:sonar ' + 
-          '-f all/pom.xml ' +
-          '-Dsonar.projectKey=com.huettermann:all:master ' +
-          '-Dsonar.url=http://34.237.220.20:9000/sonar' +
-          '-Dsonar.login=admin ' +
-          '-Dsonar.password=admin ' +
-          '-Dsonar.language=java ' +
-          '-Dsonar.sources=/var/lib/jenkins/workspace/sonar-pipeline/my-app-master/src' +
-          '-Dsonar.tests=.' +
-          '-Dsonar.test.inclusions=**/*Test*/** ' +
-          '-Dsonar.exclusions=**/*Test*/**'
-        }
-    }
-        }
+        
    stage('Deploy to Tomcat'){
   steps {
   sshagent(['3d0ff4fe-87e0-468b-9c6f-fbd6f291a57b']) {
