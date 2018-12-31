@@ -21,7 +21,7 @@ pipeline {
       stage ('Compile-Package') {
             steps {
                 git "https://github.com/quratulainleghari/my-app.git"
-               sh 'mvn -f /var/lib/jenkins/workspace/sonar-pipeline/my-app-master package install sonar:sonar -P sonar'
+               sh 'mvn -f /var/lib/jenkins/workspace/sonar-pipeline/my-app-master package install sonar:sonar -P sonar -Dsonar.url=http://34.237.220.20:9000/sonar'
              // sh 'mvn package'
             }
           //post {
