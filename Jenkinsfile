@@ -48,6 +48,7 @@ pipeline {
      //}  
        
         stage('SonarQube analysis') { 
+           steps {
         withSonarQubeEnv('Sonar') { 
           sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.603:sonar ' + 
           '-f all/pom.xml ' +
@@ -61,7 +62,7 @@ pipeline {
           '-Dsonar.exclusions=**/*Test*/**'
         }
     }
-       
+        }
    stage('Deploy to Tomcat'){
   steps {
   sshagent(['3d0ff4fe-87e0-468b-9c6f-fbd6f291a57b']) {
