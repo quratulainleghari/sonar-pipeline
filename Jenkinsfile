@@ -33,19 +33,34 @@ pipeline {
       }
   
      
-     stage ('Sonar-Analysis') {
-        environment {
+   //  stage ('Sonar-Analysis') {
+       // environment {
            
-        def scannerhome = tool 'sonar'
+       // def scannerhome = tool 'sonar'
+      //  }
+    // steps {
+  // withSonarQubeEnv ('sonar') {
+
+// sh "${sonar}/opt/sonar -Dsonar.projectKey=my-app-master -Dsonar.projectName=my-app-master -Dsonar.projectVersion=1.0 -Dsonar.java.binaries=/etc/sonarqube  -Dsonar.web.host=sonar -Dsonar.web.port=9000 -Dsonar.sources=/var/lib/jenkins/workspace/sonar-pipeline/my-app-master/src -Dsonar.url=http://34.237.220.20:9000/sonar"
+   // }
+
+//}
+     //}  
+       
+        stage('SonarQube analysis') { 
+        withSonarQubeEnv('Sonar') { 
+          sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.603:sonar ' + 
+          '-f all/pom.xml ' +
+          '-Dsonar.projectKey=com.huettermann:all:master ' +
+          '-Dsonar.login=admin ' +
+          '-Dsonar.password=admin ' +
+          '-Dsonar.language=java ' +
+          '-Dsonar.sources=/var/lib/jenkins/workspace/sonar-pipeline/my-app-master/src' +
+          '-Dsonar.tests=.' +
+          '-Dsonar.test.inclusions=**/*Test*/** ' +
+          '-Dsonar.exclusions=**/*Test*/**'
         }
-     steps {
-   withSonarQubeEnv ('sonar') {
-
- sh "${sonar}/opt/sonar -Dsonar.projectKey=my-app-master -Dsonar.projectName=my-app-master -Dsonar.projectVersion=1.0 -Dsonar.java.binaries=/etc/sonarqube  -Dsonar.web.host=sonar -Dsonar.web.port=9000 -Dsonar.sources=/var/lib/jenkins/workspace/sonar-pipeline/my-app-master/src -Dsonar.url=http://34.237.220.20:9000/sonar"
     }
-
-}
-     }  
        
    stage('Deploy to Tomcat'){
   steps {
