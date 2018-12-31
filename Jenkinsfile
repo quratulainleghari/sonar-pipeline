@@ -41,7 +41,7 @@ pipeline {
      steps {
   withSonarQubeEnv ('sonar') {
 
-sh "${sonar}/opt/sonar' +
+sh "${sonar}/opt/sonar' "\n"
      '-Dsonar.projectKey=my-app-master' +
         '-Dsonar.projectName=my-app-master' +
         '-Dsonar.projectVersion=1.0' +
