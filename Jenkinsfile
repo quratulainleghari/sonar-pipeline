@@ -50,9 +50,10 @@ pipeline {
         stage('SonarQube analysis') { 
            steps {
         withSonarQubeEnv('Sonar') { 
-          sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.603:sonar ' + 
+          sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:2.4:sonar ' + 
           '-f all/pom.xml ' +
           '-Dsonar.projectKey=com.huettermann:all:master ' +
+          '-Dsonar.url=http://34.237.220.20:9000/sonar' +
           '-Dsonar.login=admin ' +
           '-Dsonar.password=admin ' +
           '-Dsonar.language=java ' +
