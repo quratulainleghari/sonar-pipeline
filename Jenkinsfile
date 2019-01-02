@@ -36,12 +36,12 @@ pipeline {
     stage ('Sonar-Analysis') {
         
 environment {
- def scannerhome = tool 'sonar'
+ def scannerhome = tool 'sonar-runner'
     }
  steps {
    withSonarQubeEnv ('sonar') 
 {
-sh "${sonar}/opt/sonar -Dsonar.projectKey=my-app-master -Dsonar.projectName=my-app-master -Dsonar.projectVersion=1.0 -Dsonar.java.binaries=/etc/sonarqube  -Dsonar.web.host=sonar -Dsonar.web.port=9000 -Dsonar.sources=/var/lib/jenkins/workspace/sonar-pipeline/my-app-master/src -Dsonar.url=http://34.237.220.20:9000/sonar"
+sh "${scannerhome}/opt/sonar-runner -D sonar.projectKey=my-app-master -D sonar.projectName=my-app-master -D sonar.projectVersion=1.0  -D sonar.web.host=sonar -D sonar.web.port=9000 -D sonar.sources=/var/lib/jenkins/workspace/sonar-pipeline/my-app-master/src -D sonar.url=http://18.210.6.251:9000/sonar"
    }
 }
     } 
