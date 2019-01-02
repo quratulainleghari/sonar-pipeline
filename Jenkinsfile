@@ -41,7 +41,7 @@ environment {
  steps {
    withSonarQubeEnv ('sonar') 
 {
-sh "${scannerhome}/opt/sonar-runner -D sonar.projectKey=my-app-master -D sonar.projectName=my-app-master -D sonar.projectVersion=1.0  -D sonar.web.host=sonar -D sonar.web.port=9000 -D sonar.sources=/var/lib/jenkins/workspace/sonar-pipeline/my-app-master/src -D sonar.url=http://18.210.6.251:9000/sonar"
+sh "${scannerhome}/bin/sonar-runner -D sonar.projectKey=my-app-master -D sonar.projectName=my-app-master -D sonar.projectVersion=1.0  -D sonar.web.host=sonar -D sonar.web.port=9000 -D sonar.sources=/var/lib/jenkins/workspace/sonar-pipeline/my-app-master/src -D sonar.url=http://18.210.6.251:9000/sonar"
    }
 }
     } 
